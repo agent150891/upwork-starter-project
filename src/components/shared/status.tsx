@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { DropzoneFileI, PureFileI } from '../../iterfaces/DropZoneI'
 
 interface StatusPropsI {
   status: string
@@ -21,8 +20,6 @@ const statuses = {
   }
 }
 const Status: FC<StatusPropsI> = ({ status }) => {
-  console.log(status === '')
-
   return (
     <>
       {status === 'loading' && (

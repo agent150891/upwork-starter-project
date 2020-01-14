@@ -9,8 +9,6 @@ interface ImagePreviewPropsI {
 }
 
 const ImagePreview: FC<ImagePreviewPropsI> = ({ file, status }) => {
-  console.log('IMAGE PREVIEW', file)
-
   return (
     <ImagePreviewWrapper>
       {status === 'loading' && <ImageSpinner />}

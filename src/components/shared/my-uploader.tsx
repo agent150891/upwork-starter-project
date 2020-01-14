@@ -58,7 +58,6 @@ const MyUploader: FC = () => {
   useEffect(
     () => () => {
       // Make sure to revoke the data uris to avoid memory leaks
-      console.log('FILES', files)
       files.forEach((file) => {
         if (file.preview) {
           URL.revokeObjectURL(file.preview)

@@ -1,14 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { GlobalStyle } from './global-style'
-import { Spinner } from './components/shared/spinner'
+// import { Spinner } from './components/shared/spinner'
+import { UploadPage } from './pages/upload-page'
+import { Demo } from './styles/demo'
 
 console.info(`⚛️ ${React.version}`)
 
 const App = () => (
   <>
-    <GlobalStyle />
-    <Spinner />
+    <Demo>
+      {/*<Spinner />*/}
+      <UploadPage />
+    </Demo>
   </>
 )
 

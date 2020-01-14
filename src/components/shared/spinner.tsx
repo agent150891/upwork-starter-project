@@ -60,6 +60,10 @@ const StyledSpinner = styled(Spinner)`
   height: 40px;
   align-self: center;
   margin: 0 auto;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 
   .${rcn('st0')} {
     clip-path: url(#SVGID_2_);

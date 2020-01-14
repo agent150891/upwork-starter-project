@@ -4,7 +4,7 @@
     "@arkweid/lefthook": "^0.7.0",
     "@types/react": "16.9.17",
     "@types/react-dom": "16.9.4",
-    "@types/styled-components": "4.4.1",
+    "@types/styled-components": "^4.4.2",
     "@typescript-eslint/eslint-plugin": "2.13.0",
     "@typescript-eslint/parser": "2.13.0",
     "eslint": "6.8.0",
@@ -18,7 +18,7 @@
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "react-fast-compare": "2.0.4",
-    "styled-components": "4.4.1",
+    "styled-components": "^4.0.0",
     "typescript": "3.7.4"
   },
   "scripts": {
@@ -27,5 +27,11 @@
     "lint": "tsc --noEmit --skipLibCheck && eslint 'src/**/*.{js,ts,tsx}' --max-warnings=0",
     "format": "eslint 'src/**/*.{js,ts,tsx}' --max-warnings=0 --fix",
     "clean": "rm -rf .cache && rm -rf ./dist/* && mkdir -p ./dist"
+  },
+  "dependencies": {
+    "@types/dropzone": "^5.5.1",
+    "react-dropzone": "^10.2.1",
+    "styled-normalize": "^8.0.6",
+    "sweetalert": "^2.1.2"
   }
 }

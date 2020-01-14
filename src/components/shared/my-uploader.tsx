@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { useDropzone } from 'react-dropzone'
 import styled from 'styled-components'
 import { ImagePreview } from './image-preview'
+import { Status } from './status'
 import { PureFileI, DropzoneFileI } from '../../iterfaces/DropZoneI'
+import 'react-tippy/dist/tippy.css'
+import { Tooltip } from 'react-tippy'
 
 interface MyUploaderStyledI {
   isDragActive: boolean
@@ -10,35 +13,42 @@ interface MyUploaderStyledI {
 
 const MyUploader: FC = () => {
   const [files, setFiles] = useState<Array<PureFileI>>([])
+  const [status, setStatus] = useState('')
+  const [error, setError] = useState('')
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     multiple: false,
     accept: 'image/*',
     onDrop: (files) => {
+      setError('')
       if (files.length === 0) {
-        alert('No files found!')
+        setError('No files found!')
         return
       }
-
       if (files.length > 1) {
-        alert('You can upload only one file')
+        setError('You can upload only one file')
         return
       }
-
+      setStatus('loading')
       const file = files[0]
       const image = new Image()
       image.addEventListener('load', () => {
         if (image.width > 100) {
-          alert(image.width)
+          setError(
+            `width of selected file: ${image.width}px. \n  maximum width: 100px`
+          )
           return
         }
         if (image.height > 100) {
-          alert(image.height)
+          setError(
+            `height of selected file: ${image.height}px. \n  maximum height: 100px`
+          )
           return
         }
         Object.assign(file, {
           preview: URL.createObjectURL(file)
         })
         setFiles([file])
+        setStatus('loaded')
       })
       image.src = window.URL.createObjectURL(file)
     }
@@ -59,10 +69,9 @@ const MyUploader: FC = () => {
     <DropzoneWrapper>
       <Dropzone isDragActive={isDragActive} {...getRootProps()}>
         <input {...getInputProps()} />
-        <ImagePreview file={files[0]} />
-        <DropzoneStatus>Uploading</DropzoneStatus>
-        <DropzoneOr>- or -</DropzoneOr>
-        <DropzoneButton>Select file to upload</DropzoneButton>
+        <Tooltip title={error} theme="light" arrow open disabled={!error} />
+        <ImagePreview status={status} file={files[0]} />
+        <Status status={status} />
       </Dropzone>
     </DropzoneWrapper>
   )
@@ -74,23 +83,6 @@ const DropzoneWrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-`
-const DropzoneStatus = styled.div`
-  color: ${({ theme }) => theme.textBlackUpload};
-  font-size: 12px;
-  margin-bottom: 8px;
-`
-const DropzoneOr = styled.div`
-  color: ${({ theme }) => theme.textBlueHeader};
-  font-size: 12px;
-  margin-bottom: 8px;
-`
-const DropzoneButton = styled.button`
-  border: none;
-  background-color: transparent;
-  color: ${({ theme }) => theme.textBlueBody};
-  font-size: 12px;
-  cursor: pointer;
 `
 const Dropzone = styled.div<MyUploaderStyledI>`
   ${({ theme, isDragActive }) =>

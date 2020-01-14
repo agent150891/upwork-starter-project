@@ -17,6 +17,20 @@ const GlobalStyle = createGlobalStyle`
    display: flex;
    align-items: center;
    justify-content: center;
+   padding: 12px;
+  }
+ .tippy-tooltip {
+   background-color: #d15050 !important;
+   padding:20px 10px;
+  }
+  .tippy-tooltip-content{
+  text-transform: uppercase;
+  color: #fff;
+  white-space:pre;
+  line-height: 20px;
+  }
+  .arrow-regular{
+         border-top: 7px solid #d15050!important ;
   }
   body {
     margin: 0;

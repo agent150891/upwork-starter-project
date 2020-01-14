@@ -33,12 +33,14 @@ const MyUploader: FC = () => {
       const image = new Image()
       image.addEventListener('load', () => {
         if (image.width > 100) {
+          setStatus('loaded')
           setError(
             `width of selected file: ${image.width}px. \n  maximum width: 100px`
           )
           return
         }
         if (image.height > 100) {
+          setStatus('loaded')
           setError(
             `height of selected file: ${image.height}px. \n  maximum height: 100px`
           )

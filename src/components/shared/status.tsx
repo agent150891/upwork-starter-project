@@ -12,15 +12,17 @@ const statuses = {
     button: 'Select file to upload'
   },
   loaded: {
-    title: 'Drug & drop here to replace',
+    title: 'Drag & drop here to replace',
     button: 'Select file to replace'
   },
   default: {
-    title: 'Drug & drop here',
+    title: 'Drag & drop here',
     button: 'Select file to upload'
   }
 }
 const Status: FC<StatusPropsI> = ({ status }) => {
+  console.log(status === '')
+
   return (
     <>
       {status === 'loading' && (
@@ -39,9 +41,9 @@ const Status: FC<StatusPropsI> = ({ status }) => {
       )}
       {status === '' && (
         <>
-          <DropzoneStatus>{statuses.loading.title}</DropzoneStatus>
+          <DropzoneStatus>{statuses.default.title}</DropzoneStatus>
           <DropzoneOr>- or -</DropzoneOr>
-          <DropzoneButton>{statuses.loading.button}</DropzoneButton>
+          <DropzoneButton>{statuses.default.button}</DropzoneButton>
         </>
       )}
     </>

@@ -13,7 +13,7 @@ const Header: FC = () => {
 }
 
 const HeaderWrapper = styled.div`
-  padding: 29px 21px;
+  padding: 25px 21px 20px;
   border-bottom: 1px solid ${({ theme }) => theme.borderColor};
 `
 const HeaderTitle = styled.div`
